@@ -2,5 +2,7 @@ DebugConfig
 Listing
 Object
 *.scvd
+*.uvgui.*
 *.uvguix.*
 *.uvoptx
+*_image.c
