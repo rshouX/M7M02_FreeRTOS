@@ -454,6 +454,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\M0A00_Library\FreeRTOS_V9.0.0\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
             </File>
+            <File>
+              <FileName>FreeRTOS_fast_yield.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\Source\FreeRTOS_fast_yield.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

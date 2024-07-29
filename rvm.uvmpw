@@ -15,6 +15,7 @@
 
   <project>
     <PathAndName>.\Proc2\Project\prc_proc2.uvprojx</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
 
