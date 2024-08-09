@@ -340,7 +340,7 @@
               <MiscControls>-Wno-unknown-warning-option -Wno-unsafe-buffer-usage -Wno-date-time -Wno-unused-parameter -Wno-missing-noreturn -Wno-unsafe-buffer-usage -Wno-missing-variable-declarations</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>./;../Include/;..\..\..\..\Include\;..\..\..\..\Guest\;..\..\..\..\..\M0A00_Library\FreeRTOS_V9.0.0\FreeRTOS\Source\include;..\..\..\..\Guest\FRT</IncludePath>
+              <IncludePath>./;../Include/;..\..\..\..\Include\;..\..\..\..\Guest\;..\..\..\..\Guest\FRT;..\..\..\..\..\M0A00_Library\FreeRTOS_V9.0.0\FreeRTOS\Source\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

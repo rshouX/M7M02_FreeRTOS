@@ -1,8 +1,13 @@
+# Keil
 DebugConfig
 Listing
 Object
+RTE
 *.scvd
 *.uvgui.*
 *.uvguix.*
 *.uvoptx
+
+# GCC toolchain
+Object
 *_image.c
