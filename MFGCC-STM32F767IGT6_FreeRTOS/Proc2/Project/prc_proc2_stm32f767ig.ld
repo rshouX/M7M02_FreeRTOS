@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : proc_proc2_stm32f767ig.ld
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:32
+Date        : 16/08/2024 22:18:20
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32F767IG, and the GNU toolchain.
@@ -35,6 +35,7 @@ SECTIONS
 /* Process descriptor segment */
 .PROCESS_DESC : ALIGN(4)
 {
+    KEEP(*prc_proc2_desc.o(.srodata .srodata.* .sconstdata .sconstdata.*))
     KEEP(*prc_proc2_desc.o(.rodata .rodata.* .constdata .constdata.*))
 } > DESC
 

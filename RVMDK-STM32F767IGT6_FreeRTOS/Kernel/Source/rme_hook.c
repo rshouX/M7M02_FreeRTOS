@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rme_hook.c
 Author      : The RVM project generator.
-Date        : 15/07/2024 19:11:05
+Date        : 16/08/2024 22:18:31
 License     : Unlicense; see COPYING for details.
 Description : The user initialization hook file.
 ******************************************************************************/
@@ -77,9 +77,9 @@ Return      : rme_ptr_t - Decides what endpoints to send to (see manual).
 ******************************************************************************/
 rme_ptr_t RME_Spurious_Handler(rme_ptr_t Vct_Num)
 {
-     #define TIM4_SR    *((volatile rme_u32_t*)(0x40000810U))
-     TIM4_SR=0U;
-     return RME_RVM_VCT_SIG_INIT;
+    #define TIM4_SR    *((volatile rme_u32_t*)(0x40000810U))
+    TIM4_SR=0U;
+    return RME_RVM_VCT_SIG_INIT;
 }
 /* End Function:RME_Spurious_Handler *****************************************/
 

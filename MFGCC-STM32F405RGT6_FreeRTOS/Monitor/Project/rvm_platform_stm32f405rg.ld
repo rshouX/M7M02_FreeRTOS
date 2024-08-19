@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rvm_platform_stm32f405rg.ld
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:29
+Date        : 16/08/2024 22:18:15
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32F405RG, and the GNU toolchain.
@@ -36,6 +36,7 @@ SECTIONS
     __RVM_Code_Start = .;
     KEEP(*_gcc.o(.text.rvm_entry))
     *(.text .text.*)
+    *(.srodata .srodata.* .sconstdata .sconstdata.*)
     *(.rodata .rodata.* .constdata .constdata.*)
     . = ALIGN(4);
     __RVM_Code_End = .;
@@ -48,6 +49,10 @@ __RVM_Data_Load = LOADADDR(.MONITOR_DATA);
     FILL(0xFF)
     __RVM_Data_Start = .;
     __RVM_Global = . + 0x800;
+    *(.sdata_begin .sdata_begin.*)
+    *(.sdata .sdata.*)
+    *(.sdata2.*)
+    *(.sdata_end .sdata_end.*)
     *(.data_begin .data_begin.*)
     *(.data .data.*)
     *(.data_end .data_end.*)
@@ -59,6 +64,11 @@ __RVM_Data_Load = LOADADDR(.MONITOR_DATA);
 .MONITOR_ZERO : ALIGN(4)
 {
     __RVM_Zero_Start = .;
+    *(.sbss_begin .sbss_begin.*)
+    *(.sbss .sbss.*)
+    *(.sbss2.*)
+    *(SCOMMON)
+    *(.sbss_end .sbss_end.*)
     *(.bss_begin .bss_begin.*)
     *(.bss .bss.*)
     *(COMMON)
@@ -71,6 +81,7 @@ __RVM_Data_Load = LOADADDR(.MONITOR_DATA);
 .MONITOR_NOINIT (NOLOAD) : ALIGN(4)
 {
     __RVM_Noinit_Start = .;
+    *(.snoinit .snoinit.*)
     *(.noinit .noinit.*)
     . = ALIGN(4);
     __RVM_Noinit_End = .;

@@ -17,9 +17,9 @@ Description: The configuration file for STM32F405RG.
 #define RME_PGT_RAW_ENABLE                              (0U)
 /* Modifiable ****************************************************************/
 /* Kernel object virtual memory base */
-#define RME_KOM_VA_BASE                                 (0x10001280U)
+#define RME_KOM_VA_BASE                                 (0x10001340U)
 /* Kernel object virtual memory size */
-#define RME_KOM_VA_SIZE                                 (0x1500U)
+#define RME_KOM_VA_SIZE                                 (0x1440U)
 /* Hypervisor context virtual memory base - set to 0 if no VM */
 #define RME_HYP_VA_BASE                                 (0x0U)
 /* Hypervisor context virtual memory size - set to 0 if no VM */
@@ -47,7 +47,7 @@ Description: The configuration file for STM32F405RG.
 #define RME_RVM_KOM_BOOT_FRONT                          (0x710U)
 /* Post-boot kernel object frontier limit */
 #define RME_RVM_CPT_DONE_FRONT                          (17U)
-#define RME_RVM_KOM_DONE_FRONT                          (0x1500U)
+#define RME_RVM_KOM_DONE_FRONT                          (0x1440U)
 
 /* Init process's first thread's entry point address */
 #define RME_A7M_INIT_ENTRY                              (0x8010001U)
@@ -60,8 +60,8 @@ Description: The configuration file for STM32F405RG.
 /* Number of MPU regions available */
 #define RME_A7M_REGION_NUM                              (8U)
 /* What is the FPU type? */
-#define RME_COP_NUM                                     (1U)
-#define RME_A7M_COP_FPV4_SP                             (1U)
+#define RME_COP_NUM                                     (0U)
+#define RME_A7M_COP_FPV4_SP                             (0U)
 #define RME_A7M_COP_FPV5_SP                             (0U)
 #define RME_A7M_COP_FPV5_DP                             (0U)
 

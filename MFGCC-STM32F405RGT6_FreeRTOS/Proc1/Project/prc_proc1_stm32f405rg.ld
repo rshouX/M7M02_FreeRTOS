@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : proc_proc1_stm32f405rg.ld
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:29
+Date        : 16/08/2024 22:18:15
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32F405RG, and the GNU toolchain.
@@ -35,6 +35,7 @@ SECTIONS
 /* Process descriptor segment */
 .PROCESS_DESC : ALIGN(4)
 {
+    KEEP(*prc_proc1_desc.o(.srodata .srodata.* .sconstdata .sconstdata.*))
     KEEP(*prc_proc1_desc.o(.rodata .rodata.* .constdata .constdata.*))
 } > DESC
 

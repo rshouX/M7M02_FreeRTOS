@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : prc_proc2_inv_inv1.c
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:29
+Date        : 16/08/2024 22:18:15
 License     : Unlicense; see COPYING for details.
 Description : The user stub file for thread 'Inv1'.
 ******************************************************************************/

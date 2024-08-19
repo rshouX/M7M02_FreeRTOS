@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rvm_boot.c
 Author      : The RVM project generator.
-Date        : 15/07/2024 19:11:05
+Date        : 16/08/2024 22:18:31
 License     : Unlicense; see COPYING for details.
 Description : The boot-time initialization file.
 ******************************************************************************/
@@ -31,8 +31,8 @@ Description : The boot-time initialization file.
 struct RVM_Virt_Struct RVM_Virt[RVM_VIRT_NUM];
 const struct RVM_Vmap_Struct RVM_Vmap[RVM_VIRT_NUM]=
 {
-{(rvm_s8_t*)"Virt1", 5U, 10U, 100U, 0U, 10U, 
- (struct RVM_Thd_Reg*)0x2004F750U, (struct RVM_State*)0x2004F7C0U,
+{(rvm_s8_t*)"Virt1", 5U, 10U, 100U, 0U, 4U, 
+ (struct RVM_Thd_Reg*)0x2004F790U, (struct RVM_State*)0x2004F7C0U,
  0x40U, 0x8050000U, RVM_CID(RVM_MAIN_VEP_0, 0U),
  RVM_THD_VCT_PRC_VIRT1, 0x2004FC00U, 0x400U,
  RVM_THD_USR_PRC_VIRT1, 0x2004F800U, 0x400U},
@@ -178,17 +178,17 @@ const struct RVM_Meta_Main_Struct RVM_Meta_Thd_Main[RVM_BOOT_THD_MAIN_NUM]=
 };
 const struct RVM_Meta_Thd_Crt_Struct RVM_Meta_Thd_Crt[RVM_BOOT_THD_CRT_NUM]=
 {
-{RVM_MAIN_THD_0, 0, RVM_PRC_PROC1, 17U, RVM_A7M_ATTR_FPV5_DP, 0U},
-{RVM_MAIN_THD_0, 1, RVM_PRC_PROC2, 16U, RVM_A7M_ATTR_FPV5_DP, 0U},
-{RVM_MAIN_THD_0, 2, RVM_PRC_VIRT1, 3U, RVM_A7M_ATTR_FPV5_DP, 0U},
-{RVM_MAIN_THD_0, 3, RVM_PRC_VIRT1, 2U, RVM_A7M_ATTR_FPV5_DP, 1U},
+{RVM_MAIN_THD_0, 0, RVM_PRC_PROC1, 17U, RVM_A7M_ATTR_NONE, 0U},
+{RVM_MAIN_THD_0, 1, RVM_PRC_PROC2, 16U, RVM_A7M_ATTR_NONE, 0U},
+{RVM_MAIN_THD_0, 2, RVM_PRC_VIRT1, 3U, RVM_A7M_ATTR_NONE, 0U},
+{RVM_MAIN_THD_0, 3, RVM_PRC_VIRT1, 2U, RVM_A7M_ATTR_NONE, 1U},
 };
 const struct RVM_Meta_Thd_Init_Struct RVM_Meta_Thd_Init[RVM_BOOT_THD_INIT_NUM]=
 {
 {RVM_THD_THD1_PRC_PROC1, 0U, 0x8030000U, 0U, 0x2002F000U, 0x1000U, 0x1234U, 17U, 0U},
 {RVM_THD_THD1_PRC_PROC2, 0U, 0x8040000U, 0U, 0x2003F000U, 0x1000U, 0x1234U, 16U, 0U},
 {RVM_THD_VCT_PRC_VIRT1, RVM_VIRT_TID_FLAG, 0x8050000U, 0U, 0x2004FC00U, 0x400U, 0x0U, 3U, 0U},
-{RVM_THD_USR_PRC_VIRT1, RVM_VIRT_TID_FLAG, 0x8050000U, 1U, 0x2004F800U, 0x400U, 0x0U, 2U, 0x2004F750U},
+{RVM_THD_USR_PRC_VIRT1, RVM_VIRT_TID_FLAG, 0x8050000U, 1U, 0x2004F800U, 0x400U, 0x0U, 2U, 0x2004F790U},
 };
 
 /* Invocation metadata */

@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : prc_proc2.h
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:29
+Date        : 16/08/2024 22:18:15
 License     : Unlicense; see COPYING for details.
 Description : The user kernel object header.
 ******************************************************************************/
@@ -54,8 +54,8 @@ Description : The user kernel object header.
 #define RVM_DBGLOG_ENABLE                               (1U)
 
 /* Coprocessor options */
-#define RVM_COP_NUM                                     (1U)
-#define RVM_A7M_COP_FPV4_SP                             (1U)
+#define RVM_COP_NUM                                     (0U)
+#define RVM_A7M_COP_FPV4_SP                             (0U)
 #define RVM_A7M_COP_FPV5_SP                             (0U)
 #define RVM_A7M_COP_FPV5_DP                             (0U)
 #endif /* __PRC_PROC2__ */

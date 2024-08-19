@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rvm_boot.h
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:32
+Date        : 16/08/2024 22:18:20
 License     : Unlicense; see COPYING for details.
 Description : The boot-time initialization file header.
 ******************************************************************************/
@@ -106,21 +106,21 @@ Description : The boot-time initialization file header.
 
 /* Thread frontiers & number */
 #define RVM_BOOT_THD_BEFORE                             (0x1020U)
-#define RVM_BOOT_THD_AFTER                              (0x1370U)
+#define RVM_BOOT_THD_AFTER                              (0x12B0U)
 #define RVM_BOOT_THD_MAIN_NUM                           (1U)
 #define RVM_BOOT_THD_CRT_NUM                            (4U)
 #define RVM_BOOT_THD_INIT_NUM                           (4U)
 
 /* Invocation frontiers & number */
-#define RVM_BOOT_INV_BEFORE                             (0x1370U)
-#define RVM_BOOT_INV_AFTER                              (0x1410U)
+#define RVM_BOOT_INV_BEFORE                             (0x12B0U)
+#define RVM_BOOT_INV_AFTER                              (0x1350U)
 #define RVM_BOOT_INV_MAIN_NUM                           (1U)
 #define RVM_BOOT_INV_CRT_NUM                            (2U)
 #define RVM_BOOT_INV_INIT_NUM                           (2U)
 
 /* Receive endpoint frontiers & number */
-#define RVM_BOOT_RCV_BEFORE                             (0x1410U)
-#define RVM_BOOT_RCV_AFTER                              (0x1450U)
+#define RVM_BOOT_RCV_BEFORE                             (0x1350U)
+#define RVM_BOOT_RCV_AFTER                              (0x1390U)
 #define RVM_BOOT_RCV_MAIN_NUM                           (1U)
 #define RVM_BOOT_RCV_CRT_NUM                            (2U)
 

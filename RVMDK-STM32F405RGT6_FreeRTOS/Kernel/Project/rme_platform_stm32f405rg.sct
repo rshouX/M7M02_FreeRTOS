@@ -1,7 +1,7 @@
 ;******************************************************************************
 ;Filename    : rme_platform_stm32f405rg.sct
 ;Author      : The RVM project generator.
-;Date        : 08/08/2024 16:25:25
+;Date        : 16/08/2024 22:18:27
 ;Licence     : Unlicense; see COPYING for details.
 ;Description : The scatter file for ARMv7-M layout. This file is intended
 ;              to be used with STM32F405RG.
@@ -26,13 +26,13 @@ KERNEL 0x8000000 0x10000
     }
 
     ;Statically allocated kernel data segment
-    KERNEL_INIT 0x10000000 0x1280
+    KERNEL_INIT 0x10000000 0x1340
     {
         .ANY                           (+RW +ZI)
     }
 
     ;Dynamically allocated kernel data segment
-    KERNEL_DATA 0x10001280 EMPTY 0x1500
+    KERNEL_DATA 0x10001340 EMPTY 0x1440
     {
 
     }

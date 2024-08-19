@@ -17,9 +17,9 @@ Description: The configuration file for STM32F767IG.
 #define RME_PGT_RAW_ENABLE                              (0U)
 /* Modifiable ****************************************************************/
 /* Kernel object virtual memory base */
-#define RME_KOM_VA_BASE                                 (0x2000DB00U)
+#define RME_KOM_VA_BASE                                 (0x2000DBC0U)
 /* Kernel object virtual memory size */
-#define RME_KOM_VA_SIZE                                 (0x1480U)
+#define RME_KOM_VA_SIZE                                 (0x13C0U)
 /* Hypervisor context virtual memory base - set to 0 if no VM */
 #define RME_HYP_VA_BASE                                 (0x0U)
 /* Hypervisor context virtual memory size - set to 0 if no VM */
@@ -47,7 +47,7 @@ Description: The configuration file for STM32F767IG.
 #define RME_RVM_KOM_BOOT_FRONT                          (0x710U)
 /* Post-boot kernel object frontier limit */
 #define RME_RVM_CPT_DONE_FRONT                          (17U)
-#define RME_RVM_KOM_DONE_FRONT                          (0x1450U)
+#define RME_RVM_KOM_DONE_FRONT                          (0x1390U)
 
 /* Init process's first thread's entry point address */
 #define RME_A7M_INIT_ENTRY                              (0x8020001U)
@@ -60,10 +60,10 @@ Description: The configuration file for STM32F767IG.
 /* Number of MPU regions available */
 #define RME_A7M_REGION_NUM                              (8U)
 /* What is the FPU type? */
-#define RME_COP_NUM                                     (3U)
-#define RME_A7M_COP_FPV4_SP                             (1U)
-#define RME_A7M_COP_FPV5_SP                             (1U)
-#define RME_A7M_COP_FPV5_DP                             (1U)
+#define RME_COP_NUM                                     (0U)
+#define RME_A7M_COP_FPV4_SP                             (0U)
+#define RME_A7M_COP_FPV5_SP                             (0U)
+#define RME_A7M_COP_FPV5_DP                             (0U)
 
 /* Fixed *********************************************************************/
 /* What is the external crystal frequency? */

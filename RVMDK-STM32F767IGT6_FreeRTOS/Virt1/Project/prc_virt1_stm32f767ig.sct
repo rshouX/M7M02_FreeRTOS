@@ -1,7 +1,7 @@
 ;******************************************************************************
 ;Filename    : proc_virt1_stm32f767ig.sct
 ;Author      : The RVM project generator.
-;Date        : 15/07/2024 19:11:05
+;Date        : 16/08/2024 22:18:31
 ;Licence     : Unlicense; see COPYING for details.
 ;Description : The scatter file for ARMv7-M layout. This file is intended
 ;              to be used with STM32F767IG.
@@ -34,7 +34,7 @@ PROCESS 0x8050020 0xFFE0
     }
 
     ;Process data segment
-    PROCESS_DATA 0x20040000 0xF750
+    PROCESS_DATA 0x20040000 0xF790
     {
         .ANY                   (+RW +ZI)
     }

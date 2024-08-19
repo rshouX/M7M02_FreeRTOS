@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : proc_virt1_stm32f767ig.ld
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:32
+Date        : 16/08/2024 22:18:20
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32F767IG, and the GNU toolchain.
@@ -11,7 +11,7 @@ Description : The GCC linker script. This file is intended
 MEMORY
 {
     /* Process data segment */
-    DATA (rw) : ORIGIN = 0x20040000 , LENGTH = 0xF750
+    DATA (rw) : ORIGIN = 0x20040000 , LENGTH = 0xF790
     /* Process stack segment */
     STK (rw) : ORIGIN = 0x2004F800 , LENGTH = 0x400
     /* Process descriptor */
@@ -35,6 +35,7 @@ SECTIONS
 /* Process descriptor segment */
 .PROCESS_DESC : ALIGN(4)
 {
+    KEEP(*prc_virt1_desc.o(.srodata .srodata.* .sconstdata .sconstdata.*))
     KEEP(*prc_virt1_desc.o(.rodata .rodata.* .constdata .constdata.*))
 } > DESC
 

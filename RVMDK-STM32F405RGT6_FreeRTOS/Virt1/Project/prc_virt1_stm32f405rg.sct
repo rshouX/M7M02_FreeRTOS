@@ -1,7 +1,7 @@
 ;******************************************************************************
 ;Filename    : proc_virt1_stm32f405rg.sct
 ;Author      : The RVM project generator.
-;Date        : 08/08/2024 16:25:25
+;Date        : 16/08/2024 22:18:27
 ;Licence     : Unlicense; see COPYING for details.
 ;Description : The scatter file for ARMv7-M layout. This file is intended
 ;              to be used with STM32F405RG.
@@ -34,7 +34,7 @@ PROCESS 0x8028020 0xFFE0
     }
 
     ;Process data segment
-    PROCESS_DATA 0x2000A000 0xF6F0
+    PROCESS_DATA 0x2000A000 0xF790
     {
         .ANY                   (+RW +ZI)
     }

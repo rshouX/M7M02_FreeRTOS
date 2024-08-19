@@ -15,9 +15,9 @@ Description: The configuration file for STM32F767IG. The values listed here shou
 /* Are we using raw memory mappings? */
 #define RVM_PGT_RAW_ENABLE                              (0U)
 /* Kernel object virtual memory base */
-#define RVM_KOM_VA_BASE                                 (0x2000DB00U)
+#define RVM_KOM_VA_BASE                                 (0x2000DBC0U)
 /* Kernel object virtual memory size */
-#define RVM_KOM_VA_SIZE                                 (0x1480U)
+#define RVM_KOM_VA_SIZE                                 (0x13C0U)
 /* Kernel memory allocation granularity order */
 #define RVM_KOM_SLOT_ORDER                              (4U)
 /* The maximum number of preemption priorities */
@@ -43,7 +43,7 @@ Description: The configuration file for STM32F767IG. The values listed here shou
 #define RVM_KOM_BOOT_FRONT                              (0x710U)
 /* Post-boot kernel object frontier limit */
 #define RVM_CPT_DONE_FRONT                              (17U)
-#define RVM_KOM_DONE_FRONT                              (0x1450U)
+#define RVM_KOM_DONE_FRONT                              (0x1390U)
 
 /* Init process's first thread's entry point address */
 #define RVM_A7M_INIT_ENTRY                              (0x8020001U)
@@ -52,10 +52,10 @@ Description: The configuration file for STM32F767IG. The values listed here shou
 /* Number of MPU regions available */
 #define RVM_A7M_REGION_NUM                              (8U)
 /* What is the FPU type? */
-#define RVM_COP_NUM                                     (3U)
-#define RVM_A7M_COP_FPV4_SP                             (1U)
-#define RVM_A7M_COP_FPV5_SP                             (1U)
-#define RVM_A7M_COP_FPV5_DP                             (1U)
+#define RVM_COP_NUM                                     (0U)
+#define RVM_A7M_COP_FPV4_SP                             (0U)
+#define RVM_A7M_COP_FPV5_SP                             (0U)
+#define RVM_A7M_COP_FPV5_DP                             (0U)
 
 /* Syslib configurations *****************************************************/
 /* Stack redundancy */

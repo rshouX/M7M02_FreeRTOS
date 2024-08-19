@@ -1,7 +1,7 @@
 ;******************************************************************************
 ;Filename    : rme_platform_stm32f767ig.sct
 ;Author      : The RVM project generator.
-;Date        : 15/07/2024 19:11:05
+;Date        : 16/08/2024 22:18:31
 ;Licence     : Unlicense; see COPYING for details.
 ;Description : The scatter file for ARMv7-M layout. This file is intended
 ;              to be used with STM32F767IG.
@@ -26,13 +26,13 @@ KERNEL 0x8000000 0x20000
     }
 
     ;Statically allocated kernel data segment
-    KERNEL_INIT 0x20000000 0xDB00
+    KERNEL_INIT 0x20000000 0xDBC0
     {
         .ANY                           (+RW +ZI)
     }
 
     ;Dynamically allocated kernel data segment
-    KERNEL_DATA 0x2000DB00 EMPTY 0x1480
+    KERNEL_DATA 0x2000DBC0 EMPTY 0x13C0
     {
 
     }

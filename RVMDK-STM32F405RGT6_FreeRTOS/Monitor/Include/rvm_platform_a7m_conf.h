@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rvm_platform_a7m_conf.h
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:25
+Date        : 16/08/2024 22:18:27
 License     : Unlicense; see COPYING for details.
 Description : The chip selection header.
 ******************************************************************************/

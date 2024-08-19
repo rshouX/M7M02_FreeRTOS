@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rme_platform_stm32f405rg.ld
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:29
+Date        : 16/08/2024 22:18:15
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32F405RG, and the GNU toolchain.
@@ -11,9 +11,9 @@ Description : The GCC linker script. This file is intended
 MEMORY
 {
     /* Statically allocated kernel data segment */
-    KDATA (rw) : ORIGIN = 0x10000000 , LENGTH = 0x1280
+    KDATA (rw) : ORIGIN = 0x10000000 , LENGTH = 0x1340
     /* Dynamically allocated kernel data segment */
-    KMEM (rw) : ORIGIN = 0x10001280 , LENGTH = 0x1500
+    KMEM (rw) : ORIGIN = 0x10001340 , LENGTH = 0x1440
     /* Kernel stack segment */
     KSTK (rw) : ORIGIN = 0x100027A0 , LENGTH = 0x800
 
@@ -77,6 +77,7 @@ SECTIONS
     __RME_Code_Start = .;
     KEEP(*_gcc.o(.text.rme_vector))
     *(.text .text.*)
+    *(.srodata .srodata.* .sconstdata .sconstdata.*)
     *(.rodata .rodata.* .constdata .constdata.*)
     __RME_Code_End = .;
 } > KCODE
@@ -88,6 +89,10 @@ __RME_Data_Load = LOADADDR(.KERNEL_DATA);
     FILL(0xFF)
     __RME_Data_Start = .;
     __RME_Global = . + 0x800;
+    *(.sdata_begin .sdata_begin.*)
+    *(.sdata .sdata.*)
+    *(.sdata2.*)
+    *(.sdata_end .sdata_end.*)
     *(.data_begin .data_begin.*)
     *(.data .data.*)
     *(.data_end .data_end.*)
@@ -99,6 +104,11 @@ __RME_Data_Load = LOADADDR(.KERNEL_DATA);
 .KERNEL_ZERO (NOLOAD) : ALIGN(4)
 {
     __RME_Zero_Start = .;
+    *(.sbss_begin .sbss_begin.*)
+    *(.sbss .sbss.*)
+    *(.sbss2.*)
+    *(SCOMMON)
+    *(.sbss_end .sbss_end.*)
     *(.bss_begin .bss_begin.*)
     *(.bss .bss.*)
     *(COMMON)
@@ -111,6 +121,7 @@ __RME_Data_Load = LOADADDR(.KERNEL_DATA);
 .KERNEL_NOINIT (NOLOAD) : ALIGN(4)
 {
     __RME_Noinit_Start = .;
+    *(.snoinit .snoinit.*)
     *(.noinit .noinit.*)
     . = ALIGN(4);
     __RME_Noinit_End = .;

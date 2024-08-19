@@ -1,7 +1,7 @@
 ###############################################################################
 #Filename    : proc1
 #Author      : The RVM project generator.
-#Date        : 08/08/2024 16:25:29
+#Date        : 16/08/2024 22:18:15
 #Licence     : Unlicense; see COPYING for details.
 #Description : Generic Makefile (based on gcc). This file is intended
 #              to be used with STM32F405RG, and the GNU toolchain.
@@ -9,7 +9,7 @@
 
 # Config ######################################################################
 TARGET=proc1
-CPU=-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16
+CPU=-mcpu=cortex-m4 -mthumb
 
 CFLAGS=-O3 -specs=nano.specs -fsigned-char -fno-common -fno-strict-aliasing -fdata-sections -ffunction-sections -ffreestanding
 AFLAGS=-fdata-sections -ffunction-sections

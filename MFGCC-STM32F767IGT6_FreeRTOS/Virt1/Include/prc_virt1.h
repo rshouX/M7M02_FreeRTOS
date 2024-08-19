@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : prc_virt1.h
 Author      : The RVM project generator.
-Date        : 08/08/2024 16:25:32
+Date        : 16/08/2024 22:18:20
 License     : Unlicense; see COPYING for details.
 Description : The user kernel object header.
 ******************************************************************************/
@@ -51,23 +51,23 @@ Description : The user kernel object header.
 /* Virtual machine library enable */
 #define RVM_VIRT_LIB_ENABLE                             (1U)
 /* Virtual vector total number */
-#define RVM_VIRT_VCT_NUM                                (10U)
+#define RVM_VIRT_VCT_NUM                                (4U)
 /* State block base address & size */
 #define RVM_VIRT_STATE_BASE                             (0x2004F7C0U)
 #define RVM_VIRT_STATE_SIZE                             (0x40U)
 /* Virtual register base address & size */
-#define RVM_VIRT_REG_BASE                               (0x2004F750U)
-#define RVM_VIRT_REG_SIZE                               (0x70U)
+#define RVM_VIRT_REG_BASE                               (0x2004F790U)
+#define RVM_VIRT_REG_SIZE                               (0x30U)
 
 /* Debugging settings */
 #define RVM_ASSERT_ENABLE                               (1U)
 #define RVM_DBGLOG_ENABLE                               (1U)
 
 /* Coprocessor options */
-#define RVM_COP_NUM                                     (1U)
+#define RVM_COP_NUM                                     (0U)
 #define RVM_A7M_COP_FPV4_SP                             (0U)
 #define RVM_A7M_COP_FPV5_SP                             (0U)
-#define RVM_A7M_COP_FPV5_DP                             (1U)
+#define RVM_A7M_COP_FPV5_DP                             (0U)
 #endif /* __PRC_VIRT1__ */
 /* End Define ****************************************************************/
 
