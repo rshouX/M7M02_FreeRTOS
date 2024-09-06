@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rme_platform_stm32f767ig.ld
 Author      : The RVM project generator.
-Date        : 28/08/2024 11:01:18
+Date        : 05/09/2024 21:43:00
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32F767IG, and the GNU toolchain.

@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : prc_proc2_desc.c
 Author      : The RVM project generator.
-Date        : 28/08/2024 11:01:18
+Date        : 05/09/2024 21:43:00
 License     : Unlicense; see COPYING for details.
 Description : The process descriptor header file - do not edit!
               When using LTO, make sure this file is exempt from the LTO option,

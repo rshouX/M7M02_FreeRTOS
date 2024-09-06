@@ -1,0 +1,51 @@
+###############################################################################
+#Filename    : rvm
+#Author      : The RVM project generator.
+#Date        : 05/09/2024 21:43:15
+#Licence     : Unlicense; see COPYING for details.
+#Description : Project Makefile (based on gcc). This file is intended
+#              to be used with STM32L071CB, and the GNU toolchain.
+###############################################################################
+
+# Build #######################################################################
+all:
+	@echo [32mBuild virtual: Virt1/Project/prc_virt1[0m
+	@cd Virt1/Project/ && $(MAKE) -f prc_virt1 -j8 --no-print-directory
+	@echo
+	@echo
+	@echo [32mBuild native: Proc2/Project/prc_proc2[0m
+	@cd Proc2/Project/ && $(MAKE) -f prc_proc2 -j8 --no-print-directory
+	@echo
+	@echo
+	@echo [32mBuild native: Proc1/Project/prc_proc1[0m
+	@cd Proc1/Project/ && $(MAKE) -f prc_proc1 -j8 --no-print-directory
+	@echo
+	@echo
+	@echo [32mBuild monitor: Monitor/Project/monitor[0m
+	@cd Monitor/Project/ && $(MAKE) -f monitor -j8 --no-print-directory
+	@echo
+	@echo
+	@echo [32mBuild kernel: Kernel/Project/kernel[0m
+	@cd Kernel/Project/ && $(MAKE) -f kernel -j8 --no-print-directory
+	@echo
+	@echo
+# End Build ###################################################################
+
+# Clean #######################################################################
+clean:
+	@echo [32mClean virtual: Virt1/Project/prc_virt1[0m
+	@cd Virt1/Project/ && $(MAKE) clean -f prc_virt1 --no-print-directory
+	@echo [32mClean native: Proc2/Project/prc_proc2[0m
+	@cd Proc2/Project/ && $(MAKE) clean -f prc_proc2 --no-print-directory
+	@echo [32mClean native: Proc1/Project/prc_proc1[0m
+	@cd Proc1/Project/ && $(MAKE) clean -f prc_proc1 --no-print-directory
+	@echo [32mClean monitor: Monitor/Project/monitor[0m
+	@cd Monitor/Project/ && $(MAKE) clean -f monitor --no-print-directory
+	@echo [32mClean kernel: Kernel/Project/kernel[0m
+	@cd Kernel/Project/ && $(MAKE) clean -f kernel --no-print-directory
+# End Clean ###################################################################
+
+# End Of File #################################################################
+
+# Copyright (C) Evo-Devo Instrum. All rights reserved #########################
+

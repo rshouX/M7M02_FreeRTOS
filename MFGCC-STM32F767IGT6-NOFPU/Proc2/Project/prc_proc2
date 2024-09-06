@@ -1,7 +1,7 @@
 ###############################################################################
 #Filename    : proc2
 #Author      : The RVM project generator.
-#Date        : 28/08/2024 11:01:18
+#Date        : 05/09/2024 21:43:00
 #Licence     : Unlicense; see COPYING for details.
 #Description : Generic Makefile (based on gcc). This file is intended
 #              to be used with STM32F767IG, and the GNU toolchain.
@@ -117,7 +117,7 @@ $(TARGET).bin:$(TARGET).elf
 
 # Clean up
 clean:
-	-rm -rf $(OBJDIR)
+	-rm -rf $(OBJDIR) proc2_image.c
 
 # Dependencies
 -include $(wildcard $(OBJDIR)/*.d)

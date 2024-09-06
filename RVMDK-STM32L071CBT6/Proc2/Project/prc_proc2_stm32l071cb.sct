@@ -1,0 +1,53 @@
+;******************************************************************************
+;Filename    : proc_proc2_stm32l071cb.sct
+;Author      : The RVM project generator.
+;Date        : 05/09/2024 21:43:11
+;Licence     : Unlicense; see COPYING for details.
+;Description : The scatter file for ARMv7-M layout. This file is intended
+;              to be used with STM32L071CB.
+;******************************************************************************
+
+;Descriptor *******************************************************************
+DESC 0x8017000 0x20
+{
+    ;Process header segment
+    PROCESS_DESC 0x8017000 0x20
+    {
+        ;Process header
+        prc_proc2_desc.o         (+RO)
+    }
+}
+;End Descriptor ***************************************************************
+
+;Process **********************************************************************
+PROCESS 0x8017020 0xFE0
+{
+    ;Process code segment
+    PROCESS_CODE 0x8017020 0xFE0
+    {
+        ;Entry point assembly
+        rvm_guest_a6m_armcc.o     (RVM_ENTRY, +First)
+        ;The lib code copying code
+        *                      (InRoot$$Sections)
+        ;The other code sections
+        .ANY                   (+RO)
+    }
+
+    ;Process data segment
+    PROCESS_DATA 0x20004000 0x300
+    {
+        .ANY                   (+RW +ZI)
+    }
+
+    ;Process stack segment - required by armlib; reusing the booting thread's
+    ARM_LIB_STACK 0x20004600 EMPTY 0x200
+    {
+
+    }
+}
+;End Process ******************************************************************
+
+;End Of File ******************************************************************
+
+;Copyright (C) Evo-Devo Instrum. All rights reserved **************************
+
