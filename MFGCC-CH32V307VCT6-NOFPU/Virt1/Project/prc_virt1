@@ -1,7 +1,7 @@
 ###############################################################################
 #Filename    : virt1
-#Author      : The RVM project generator.
-#Date        : 05/09/2024 21:42:52
+#Author      : hrs
+#Date        : 27/07/2024
 #Licence     : Unlicense; see COPYING for details.
 #Description : Generic Makefile (based on gcc). This file is intended
 #              to be used with CH32V307VC, and the GNU toolchain.
@@ -9,7 +9,7 @@
 
 # Config ######################################################################
 TARGET=virt1
-CPU=-march=rv32imac -mabi=ilp32 -msmall-data-limit=8
+CPU=-march=rv32imafc -mabi=ilp32f -msmall-data-limit=8 -msave-restore
 
 CFLAGS=-O3 -specs=nano.specs -fsigned-char -fno-common -fno-strict-aliasing -fdata-sections -ffunction-sections -ffreestanding
 AFLAGS=-fdata-sections -ffunction-sections
@@ -26,24 +26,29 @@ INCS+=-I./
 INCS+=-I../Include/
 INCS+=-I../../../../Include/
 INCS+=-I../../../../Guest/
-INCS+=-I../../../../../M5P01_Prokaron/Include/
+INCS+=-I../../../../Guest/RV32P/FRT/
+INCS+=-I../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/include/
 
-# C source group
+# Virt1 group
 CSRCS+=../Source/prc_virt1_desc.c
 CSRCS+=../Source/prc_virt1.c
-CSRCS+=../../../../../M5P01_Prokaron/Source/Test/rmp_benchmark.c
-
 # C library group
+CSRCS+=../../../../Guest/RV32P/FRT/port.c
 CSRCS+=../../../../Guest/rvm_guest.c
 CSRCS+=../../../../Guest/RV32P/rvm_guest_rv32p.c
-CSRCS+=../../../../../M5P01_Prokaron/Source/Platform/RV32P_RVM/rmp_platform_rv32p_rvm.c
-CSRCS+=../../../../../M5P01_Prokaron/Source/Kernel/rmp_kernel.c
-
-# Assembly source group
+CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/croutine.c
+CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/event_groups.c
+CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/list.c
+CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/queue.c
+CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/tasks.c
+CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/timers.c
+CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/portable/MemMang/heap_4.c
+# User group
+CSRCS+=../../../../Guest/RV32P/FRT/main.c
 
 # Assembly library group
 ASRCS+=../../../../Guest/RV32P/rvm_guest_rv32p_gcc.s
-ASRCS+=../../../../../M5P01_Prokaron/Source/Platform/RV32P_RVM/rmp_platform_rv32p_rvm_gcc.s
+ASRCS+=../../../../Guest/RV32P/FRT/portASM.s
 
 LDSCRIPT=prc_virt1_ch32v307vc.ld
 LIBS=-lc -lm
@@ -119,7 +124,7 @@ $(TARGET).bin:$(TARGET).elf
 
 # Clean up
 clean:
-	-rm -rf $(OBJDIR)
+	-rm -rf $(OBJDIR) virt1_image.c
 
 # Dependencies
 -include $(wildcard $(OBJDIR)/*.d)
