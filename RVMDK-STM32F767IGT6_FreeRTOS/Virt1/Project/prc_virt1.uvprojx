@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32F767IGTx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F7xx_DFP.2.15.1</PackID>
+          <PackID>Keil.STM32F7xx_DFP.2.15.2</PackID>
           <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x08000000,0x10000) IROM(0x20000000,0x10000) CPUTYPE("Cortex-M7") FPU3(DFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -340,7 +340,7 @@
               <MiscControls>-Wno-unknown-warning-option -Wno-unsafe-buffer-usage -Wno-date-time -Wno-unused-parameter -Wno-missing-noreturn -Wno-unsafe-buffer-usage -Wno-missing-variable-declarations</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>./;../Include/;..\..\..\..\Include\;..\..\..\..\Guest\;..\..\..\..\Guest\FRT;..\..\..\..\..\M0A00_Library\FreeRTOS_V9.0.0\FreeRTOS\Source\include</IncludePath>
+              <IncludePath>./;../Include/;..\..\..\..\Include\;..\..\..\..\Guest\;..\..\..\..\Guest\A7M\FRT;..\..\..\..\..\M0A00_Library\FreeRTOS_V9.0.0\FreeRTOS\Source\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -447,7 +447,7 @@
             <File>
               <FileName>port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\Guest\FRT\port.c</FilePath>
+              <FilePath>..\..\..\..\Guest\A7M\FRT\port.c</FilePath>
             </File>
             <File>
               <FileName>heap_4.c</FileName>
@@ -457,7 +457,7 @@
             <File>
               <FileName>FreeRTOS_fast_yield_armcc.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\..\..\Guest\FRT\FreeRTOS_fast_yield_armcc.s</FilePath>
+              <FilePath>..\..\..\..\Guest\A7M\FRT\FreeRTOS_fast_yield_armcc.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -467,7 +467,7 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\Guest\FRT\main.c</FilePath>
+              <FilePath>..\..\..\..\Guest\A7M\FRT\main.c</FilePath>
             </File>
           </Files>
         </Group>

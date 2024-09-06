@@ -26,14 +26,14 @@ INCS+=-I./
 INCS+=-I../Include/
 INCS+=-I../../../../Include/
 INCS+=-I../../../../Guest/
-INCS+=-I../../../../Guest/FRT/
+INCS+=-I../../../../Guest/A7M/FRT/
 INCS+=-I../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/include/
 
 # Virt1 group
 CSRCS+=../Source/prc_virt1_desc.c
 CSRCS+=../Source/prc_virt1.c
 # C library group
-CSRCS+=../../../../Guest/FRT/port.c
+CSRCS+=../../../../Guest/A7M/FRT/port.c
 CSRCS+=../../../../Guest/rvm_guest.c
 CSRCS+=../../../../Guest/A7M/rvm_guest_a7m.c
 CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/croutine.c
@@ -44,11 +44,11 @@ CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/tasks.c
 CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/timers.c
 CSRCS+=../../../../../M0A00_Library/FreeRTOS_V9.0.0/FreeRTOS/Source/portable/MemMang/heap_4.c
 # User group
-CSRCS+=../../../../Guest/FRT/main.c
+CSRCS+=../../../../Guest/A7M/FRT/main.c
 
 # Assembly library group
 ASRCS+=../../../../Guest/A7M/rvm_guest_a7m_gcc.s
-ASRCS+=../../../../Guest/FRT/FreeRTOS_fast_yield_gcc.s
+ASRCS+=../../../../Guest/A7M/FRT/FreeRTOS_fast_yield_gcc.s
 
 LDSCRIPT=prc_virt1_stm32f405rg.ld
 LIBS=-lc -lm
@@ -124,7 +124,7 @@ $(TARGET).bin:$(TARGET).elf
 
 # Clean up
 clean:
-	-rm -rf $(OBJDIR)
+	-rm -rf $(OBJDIR) virt1_image.c
 
 # Dependencies
 -include $(wildcard $(OBJDIR)/*.d)

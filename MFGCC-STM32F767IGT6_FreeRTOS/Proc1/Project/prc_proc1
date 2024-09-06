@@ -116,7 +116,7 @@ $(TARGET).bin:$(TARGET).elf
 
 # Clean up
 clean:
-	-rm -rf $(OBJDIR)
+	-rm -rf $(OBJDIR) proc1_image.c
 
 # Dependencies
 -include $(wildcard $(OBJDIR)/*.d)

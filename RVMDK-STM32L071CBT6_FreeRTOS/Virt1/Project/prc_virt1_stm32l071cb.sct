@@ -1,7 +1,7 @@
 ;******************************************************************************
 ;Filename    : proc_virt1_stm32l071cb.sct
 ;Author      : The RVM project generator.
-;Date        : 08/08/2024 16:25:18
+;Date        : 25/08/2024 17:37:30
 ;Licence     : Unlicense; see COPYING for details.
 ;Description : The scatter file for ARMv7-M layout. This file is intended
 ;              to be used with STM32L071CB.
