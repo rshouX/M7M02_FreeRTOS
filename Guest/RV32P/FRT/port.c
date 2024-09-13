@@ -171,7 +171,6 @@ extern void xPortStartFirstTask( void );
 	in this file, otherwise vPortSetupTimerInterrupt() must be implemented to
 	configure whichever clock is to be used to generate the tick interrupt. */
 	vPortSetupTimerInterrupt();
-
     /* Initialise the critical nesting count ready for the first task. */
     uxCriticalNesting = 0;
 	xPortStartFirstTask();
@@ -224,10 +223,103 @@ portUBASE_TYPE xPortSetInterruptMask(void)
 }
 
 /*-----------------------------------------------------------*/
-StackType_t *pxPortInitialiseStack(StackType_t* pxTopOfStack, TaskFunction_t pxCode, void* pvParameters )
+extern uint32_t read_mstatus(void);
+StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
 {
-    
+	pxTopOfStack--;
+	*pxTopOfStack = 0x0U; /* mstatus */
 
+	/* x31...x11 */
+	pxTopOfStack--;
+	*pxTopOfStack = 0x31313131U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x30303030U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x29292929U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x28282828U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x27272727U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x26262626U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x25252525U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x24242424U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x23232323U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x22222222U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x21212121U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x20202020U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x19191919U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x18181818U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x17171717U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x16161616U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x15151515U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x14141414U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x13131313U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x12121212U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x11111111U;
+	/* push pvParameters */
+	pxTopOfStack--;
+	*pxTopOfStack = (uint32_t)pvParameters;
+	/* x9...x5 */
+	pxTopOfStack--;
+	*pxTopOfStack = 0x09090909U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x08080808U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x07070707U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x06060606U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x05050505U;
 
-    
+	pxTopOfStack--;
+	*pxTopOfStack = 0x0U;
+
+	/* push pxCode */
+	pxTopOfStack--;
+	*pxTopOfStack = (uint32_t)pxCode;
+
+	/* Clean up hypercall registers */
+	pxTopOfStack--;
+	*pxTopOfStack = 0U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0U;
+
+	return pxTopOfStack;
 }
+/*-----------------------------------------------------------*/
+
+static void prvTaskExitError( void )
+{
+    /* A function that implements a task must not exit or attempt to return to
+    its caller as there is nothing to return to.  If a task wants to exit it
+    should instead call vTaskDelete( NULL ).
+
+    Artificially force an assert() to be triggered if configASSERT() is
+    defined, then stop here so application writers can catch the error. */
+    configASSERT( uxCriticalNesting == ~0UL );
+    portDISABLE_INTERRUPTS();
+    for( ;; );
+}
+/*-----------------------------------------------------------*/
