@@ -75,12 +75,11 @@ not need to be guarded with a critical section. */
 
 
 /* Scheduler utilities. */
-extern void vTaskSwitchContext( void );
-
+extern void FRT_Ctx_Handler( void );
 #define portYIELD() \
 do \
 { \
-    RVM_Virt_Yield(); \
+    FRT_Ctx_Handler(); \
     __asm__ __volatile__("fence iorw,iorw":::"memory"); \
 } \
 while(0)

@@ -223,12 +223,9 @@ portUBASE_TYPE xPortSetInterruptMask(void)
 }
 
 /*-----------------------------------------------------------*/
-extern uint32_t read_mstatus(void);
+extern uint32_t _RVM_Global;
 StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
 {
-	pxTopOfStack--;
-	*pxTopOfStack = 0x0U; /* mstatus */
-
 	/* x31...x11 */
 	pxTopOfStack--;
 	*pxTopOfStack = 0x31313131U;
@@ -275,7 +272,7 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 	/* push pvParameters */
 	pxTopOfStack--;
 	*pxTopOfStack = (uint32_t)pvParameters;
-	/* x9...x5 */
+	/* x9...x3 */
 	pxTopOfStack--;
 	*pxTopOfStack = 0x09090909U;
 	pxTopOfStack--;
@@ -286,13 +283,22 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 	*pxTopOfStack = 0x06060606U;
 	pxTopOfStack--;
 	*pxTopOfStack = 0x05050505U;
+	pxTopOfStack--;
+	*pxTopOfStack = 0x04040404U;
+	pxTopOfStack--;
+	*pxTopOfStack = (uint32_t)(&_RVM_Global);
 
+	/* x1 - return address */
 	pxTopOfStack--;
 	*pxTopOfStack = 0x0U;
 
 	/* push pxCode */
 	pxTopOfStack--;
 	*pxTopOfStack = (uint32_t)pxCode;
+
+	/* mstatus */
+	pxTopOfStack--;
+	*pxTopOfStack = 0x0088U;
 
 	/* Clean up hypercall registers */
 	pxTopOfStack--;

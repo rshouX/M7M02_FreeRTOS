@@ -6,10 +6,6 @@ Description : The assembly part of the RVM/FreeRTOS. This is for RV32 with
               physical memory access, hence RV32P.
 ******************************************************************************/
 
-/* Define ********************************************************************/
-#define portCONTEXT_SIZE                (35*4)
-/* End Define ****************************************************************/
-
 /* Import ********************************************************************/
     /* Linker-provided global data address */
     .extern             _RVM_Global
@@ -24,8 +20,6 @@ Description : The assembly part of the RVM/FreeRTOS. This is for RV32 with
     /* Mask/unmask interrupts */
     .extern             RVM_Virt_Int_Mask
     .extern             RVM_Virt_Int_Unmask
-    /* The stack top of ISR of FreeRTOS */
-    .extern             xISRStackTop
     /* Enable VM interrupts */
     .extern             RVM_Hyp_Int_Ena
 /* End Import ****************************************************************/
@@ -33,8 +27,6 @@ Description : The assembly part of the RVM/FreeRTOS. This is for RV32 with
 /* Export ********************************************************************/
     /* Start the first thread */
     .global             xPortStartFirstTask
-    /* Initialize thread stack */
-    .global             pxPortInitialiseStack
     /* Fast-path context switching without invoking the RVM and FPU */
     .global             FRT_Ctx_Handler
 /* End Export ****************************************************************/
@@ -128,12 +120,12 @@ Return      : None.
     LA                  gp,_RVM_Global      /* Load gp for kernel - defined by linker script */
     .option             pop
     
-    LW                  t0,pxCurrentTCB     /* Load pxCurrentTCB. */
-    SW                  sp,0(t0)            /* Write sp to first TCB member. */
+    LW                  a0,pxCurrentTCB     /* Load pxCurrentTCB. */
+    SW                  sp,0(a0)            /* Write sp to first TCB member. */
     LA                  sp,_RVM_Stack       /* Load sp for kernel - defined by linker script */
     CALL                vTaskSwitchContext  /* Get the highest ready task */
-    LW                  t1,pxCurrentTCB     /* Load pxCurrentTCB. */
-    LW                  sp,0(t1)            /* Read sp from first TCB member. */
+    LW                  a0,pxCurrentTCB     /* Load pxCurrentTCB. */
+    LW                  sp,0(a0)            /* Read sp from first TCB member. */
 
     LA                  a0,RVM_Usr_Param
     LW                  a0,(a0)             /* Pop hypercall parameters */
@@ -215,38 +207,43 @@ Return      : None.
 xPortStartFirstTask:
     LW                  sp,pxCurrentTCB     /* Load pxCurrentTCB. */
     LW                  sp,0(sp)            /* Read sp from first TCB member. */
-
-    LW                  x5,7*4(sp)          /* t0 */
-    LW                  x6,8*4(sp)          /* t1 */
-    LW                  x7,9*4(sp)          /* t2 */
-    LW                  x8,10*4(sp)         /* s0/fp */
-    LW                  x9,11*4(sp)         /* s1 */
-    LW                  x10,12*4(sp)        /* a0 */
-    LW                  x11,13*4(sp)        /* a1 */
-    LW                  x12,14*4(sp)        /* a2 */
-    LW                  x13,15*4(sp)        /* a3 */
-    LW                  x14,16*4(sp)        /* a4 */
-    LW                  x15,17*4(sp)        /* a5 */
-    LW                  x16,18*4(sp)        /* a6 */
-    LW                  x17,19*4(sp)        /* a7 */
-    LW                  x18,20*4(sp)        /* s2 */
-    LW                  x19,21*4(sp)        /* s3 */
-    LW                  x20,22*4(sp)        /* s4 */
-    LW                  x21,23*4(sp)        /* s5 */
-    LW                  x22,24*4(sp)        /* s6 */
-    LW                  x23,25*4(sp)        /* s7 */
-    LW                  x24,26*4(sp)        /* s8 */
-    LW                  x25,27*4(sp)        /* s9 */
-    LW                  x26,28*4(sp)        /* s10 */
-    LW                  x27,29*4(sp)        /* s11 */
-    LW                  x28,30*4(sp)        /* t3 */
-    LW                  x29,31*4(sp)        /* t4 */
-    LW                  x30,32*4(sp)        /* t5 */
-    LW                  x31,33*4(sp)        /* t6 */
-
+    ADDI                sp,sp,5*4           /* Skip hypercall parameters. */
+    
     CALL                RVM_Hyp_Int_Ena
-    LW                  x1,5*4(sp)          /* Note for starting the scheduler the exception return address is used as the function return address. */
-    ADDI                sp,sp,portCONTEXT_SIZE
+
+    LW                  a0,0*4(sp)          /* Read mstatus */
+    LW                  x1,1*4(sp)          /* ra */
+    LW                  x3,3*4(sp)          /* gp */
+    LW                  x4,4*4(sp)          /* tp */
+    LW                  x5,5*4(sp)          /* t0 */
+    LW                  x6,6*4(sp)          /* t1 */
+    LW                  x7,7*4(sp)          /* t2 */
+    LW                  x8,8*4(sp)          /* s0/fp */
+    LW                  x9,9*4(sp)          /* s1 */
+    LW                  x10,10*4(sp)        /* a0 */
+    LW                  x11,11*4(sp)        /* a1 */
+    LW                  x12,12*4(sp)        /* a2 */
+    LW                  x13,13*4(sp)        /* a3 */
+    LW                  x14,14*4(sp)        /* a4 */
+    LW                  x15,15*4(sp)        /* a5 */
+    LW                  x16,16*4(sp)        /* a6 */
+    LW                  x17,17*4(sp)        /* a7 */
+    LW                  x18,18*4(sp)        /* s2 */
+    LW                  x19,19*4(sp)        /* s3 */
+    LW                  x20,20*4(sp)        /* s4 */
+    LW                  x21,21*4(sp)        /* s5 */
+    LW                  x22,22*4(sp)        /* s6 */
+    LW                  x23,23*4(sp)        /* s7 */
+    LW                  x24,24*4(sp)        /* s8 */
+    LW                  x25,25*4(sp)        /* s9 */
+    LW                  x26,26*4(sp)        /* s10 */
+    LW                  x27,27*4(sp)        /* s11 */
+    LW                  x28,28*4(sp)        /* t3 */
+    LW                  x29,29*4(sp)        /* t4 */
+    LW                  x30,30*4(sp)        /* t5 */
+    LW                  x31,31*4(sp)        /* t6 */
+
+    ADDI                sp,sp,31*4
 
     RET
     .endfunc
