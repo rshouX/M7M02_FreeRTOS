@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : prc_proc1_desc.c
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:43:15
+Date        : 26/09/2024 10:23:19
 License     : Unlicense; see COPYING for details.
 Description : The process descriptor header file - do not edit!
               When using LTO, make sure this file is exempt from the LTO option,
@@ -12,13 +12,13 @@ Description : The process descriptor header file - do not edit!
 #include "rvm.h"
 #include "rvm_guest.h"
 
-#define RVM_TEST_PROCESS_INC
+#define RVM_TEST_NATIVE_INC
 #include "rvm_test.h"
-#undef RVM_TEST_PROCESS_INC
+#undef RVM_TEST_NATIVE_INC
 
-#define RVM_BENCHMARK_PROCESS_INC
+#define RVM_BENCHMARK_NATIVE_INC
 #include "Test/rvm_benchmark.h"
-#undef RVM_BENCHMARK_PROCESS_INC
+#undef RVM_BENCHMARK_NATIVE_INC
 /* End Include ***************************************************************/
 
 /* Public Function ***********************************************************/

@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rvm_boot.h
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:43:15
+Date        : 26/09/2024 10:23:19
 License     : Unlicense; see COPYING for details.
 Description : The boot-time initialization file header.
 ******************************************************************************/
@@ -82,51 +82,51 @@ Description : The boot-time initialization file header.
 #define RVM_VIRT_NUM                                    (1U)
 
 /* Virtual endpoint frontiers & number */
-#define RVM_BOOT_VEP_BEFORE                             (0x440U)
-#define RVM_BOOT_VEP_AFTER                              (0x460U)
+#define RVM_BOOT_VEP_BEFORE                             (0x470U)
+#define RVM_BOOT_VEP_AFTER                              (0x490U)
 #define RVM_BOOT_VEP_MAIN_NUM                           (1U)
 #define RVM_BOOT_VEP_CRT_NUM                            (1U)
 #define RVM_BOOT_VCAP_INIT_NUM                          (1U)
 
 /* Cpt frontiers & number */
-#define RVM_BOOT_INIT_CPT_BEFORE                        (0x460U)
-#define RVM_BOOT_INIT_CPT_AFTER                         (0x780U)
+#define RVM_BOOT_INIT_CPT_BEFORE                        (0x490U)
+#define RVM_BOOT_INIT_CPT_AFTER                         (0x7B0U)
 #define RVM_BOOT_INIT_CPT_MAIN_NUM                      (1U)
 #define RVM_BOOT_INIT_CPT_CRT_NUM                       (3U)
 #define RVM_BOOT_INIT_CPT_INIT_NUM                      (16U)
 #define RVM_BOOT_INIT_CPT_KFN_NUM                       (4U)
 
 /* Pgt frontiers & number */
-#define RVM_BOOT_INIT_PGT_BEFORE                        (0x780U)
-#define RVM_BOOT_INIT_PGT_AFTER                         (0xBD0U)
+#define RVM_BOOT_INIT_PGT_BEFORE                        (0x7B0U)
+#define RVM_BOOT_INIT_PGT_AFTER                         (0xC00U)
 #define RVM_BOOT_INIT_PGT_MAIN_NUM                      (1U)
 #define RVM_BOOT_INIT_PGT_CRT_NUM                       (13U)
 #define RVM_BOOT_INIT_PGT_CON_NUM                       (10U)
 #define RVM_BOOT_INIT_PGT_ADD_NUM                       (15U)
 
 /* Process frontiers & number */
-#define RVM_BOOT_PRC_BEFORE                             (0xBD0U)
-#define RVM_BOOT_PRC_AFTER                              (0xC30U)
+#define RVM_BOOT_PRC_BEFORE                             (0xC00U)
+#define RVM_BOOT_PRC_AFTER                              (0xC60U)
 #define RVM_BOOT_PRC_MAIN_NUM                           (1U)
 #define RVM_BOOT_PRC_CRT_NUM                            (3U)
 
 /* Thread frontiers & number */
-#define RVM_BOOT_THD_BEFORE                             (0xC30U)
-#define RVM_BOOT_THD_AFTER                              (0xFD0U)
+#define RVM_BOOT_THD_BEFORE                             (0xC60U)
+#define RVM_BOOT_THD_AFTER                              (0x1050U)
 #define RVM_BOOT_THD_MAIN_NUM                           (1U)
 #define RVM_BOOT_THD_CRT_NUM                            (6U)
 #define RVM_BOOT_THD_INIT_NUM                           (6U)
 
 /* Invocation frontiers & number */
-#define RVM_BOOT_INV_BEFORE                             (0xFD0U)
-#define RVM_BOOT_INV_AFTER                              (0x1010U)
+#define RVM_BOOT_INV_BEFORE                             (0x1050U)
+#define RVM_BOOT_INV_AFTER                              (0x1090U)
 #define RVM_BOOT_INV_MAIN_NUM                           (1U)
 #define RVM_BOOT_INV_CRT_NUM                            (1U)
 #define RVM_BOOT_INV_INIT_NUM                           (1U)
 
 /* Receive endpoint frontiers & number */
-#define RVM_BOOT_RCV_BEFORE                             (0x1010U)
-#define RVM_BOOT_RCV_AFTER                              (0x1090U)
+#define RVM_BOOT_RCV_BEFORE                             (0x1090U)
+#define RVM_BOOT_RCV_AFTER                              (0x1110U)
 #define RVM_BOOT_RCV_MAIN_NUM                           (1U)
 #define RVM_BOOT_RCV_CRT_NUM                            (4U)
 

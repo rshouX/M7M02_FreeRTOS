@@ -1,7 +1,7 @@
 ###############################################################################
 #Filename    : monitor
 #Author      : The RVM project generator.
-#Date        : 05/09/2024 21:42:52
+#Date        : 26/09/2024 10:23:15
 #Licence     : Unlicense; see COPYING for details.
 #Description : Generic Makefile (based on gcc). This file is intended
 #              to be used with CH32V307VC, and the GNU toolchain.
@@ -113,7 +113,7 @@ $(TARGET).bin:$(TARGET).elf
 
 # Clean up
 clean:
-	-rm -rf $(OBJDIR) monitor_image.c
+	-rm -rf $(OBJDIR)
 
 # Dependencies
 -include $(wildcard $(OBJDIR)/*.d)

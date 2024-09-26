@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rvm_platform_stm32f405rg.ld
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:42:56
+Date        : 26/09/2024 10:23:16
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32F405RG, and the GNU toolchain.
@@ -56,8 +56,8 @@ __RVM_Data_Load = LOADADDR(.MONITOR_DATA);
     *(.data_begin .data_begin.*)
     *(.data .data.*)
     *(.data_end .data_end.*)
-    __RVM_Data_End = .;
     . = ALIGN(4);
+    __RVM_Data_End = .;
   } > DATA AT > CODE
 
 /* Monitor bss segment */
@@ -73,8 +73,8 @@ __RVM_Data_Load = LOADADDR(.MONITOR_DATA);
     *(.bss .bss.*)
     *(COMMON)
     *(.bss_end .bss_end.*)
-    __RVM_Zero_End = .;
     . = ALIGN(4);
+    __RVM_Zero_End = .;
 } > DATA
 
 /* Monitor noinit segment */

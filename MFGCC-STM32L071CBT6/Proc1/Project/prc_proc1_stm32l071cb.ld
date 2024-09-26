@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : proc_proc1_stm32l071cb.ld
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:43:15
+Date        : 26/09/2024 10:23:19
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32L071CB, and the GNU toolchain.
@@ -65,8 +65,8 @@ _RVM_Data_Load = LOADADDR(.PROCESS_DATA);
     *(.data_begin .data_begin.*)
     *(.data .data.*)
     *(.data_end .data_end.*)
-    _RVM_Data_End = .;
     . = ALIGN(4);
+    _RVM_Data_End = .;
   } > DATA AT > CODE
 
 /* Process sbss & bss segment */
@@ -82,8 +82,8 @@ _RVM_Data_Load = LOADADDR(.PROCESS_DATA);
     *(.bss .bss.*)
     *(COMMON)
     *(.bss_end .bss_end.*)
-    _RVM_Zero_End = .;
     . = ALIGN(4);
+    _RVM_Zero_End = .;
 } > DATA
 
 /* Process snoinit & noinit segment */

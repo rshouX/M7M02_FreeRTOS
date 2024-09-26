@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : prc_proc2.c
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:43:03
+Date        : 26/09/2024 10:23:17
 License     : Unlicense; see COPYING for details.
 Description : The main user stub file.
 ******************************************************************************/
@@ -10,13 +10,13 @@ Description : The main user stub file.
 #include "rvm.h"
 #include "rvm_guest.h"
 
-#define RVM_TEST_PROCESS_INC
+#define RVM_TEST_NATIVE_INC
 #include "rvm_test.h"
-#undef RVM_TEST_PROCESS_INC
+#undef RVM_TEST_NATIVE_INC
 
-#define RVM_BENCHMARK_PROCESS_INC
+#define RVM_BENCHMARK_NATIVE_INC
 #include "Test/rvm_benchmark.h"
-#undef RVM_BENCHMARK_PROCESS_INC
+#undef RVM_BENCHMARK_NATIVE_INC
 /* End Include ***************************************************************/
 
 /* Public Variable ***********************************************************/
@@ -56,9 +56,9 @@ Return      : None.
 #if(RVM_DBGLOG_ENABLE!=0U)
 void RVM_Putchar(char Char)
 {
-#define RVM_TEST_PROCESS_PUTCHAR
+#define RVM_TEST_NATIVE_PUTCHAR
 #include "rvm_test.h"
-#undef RVM_TEST_PROCESS_PUTCHAR
+#undef RVM_TEST_NATIVE_PUTCHAR
 }
 #endif
 /* End Function:RVM_Putchar **************************************************/

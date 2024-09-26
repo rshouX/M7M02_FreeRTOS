@@ -3,38 +3,40 @@
 
   <SchemaVersion>1.0</SchemaVersion>
 
-  <Header>### uVision Project, (C) Keil Software</Header>
+  <Header>### uVision Project, (C) RVM Project Generator</Header>
 
   <WorkspaceName>WorkSpace</WorkspaceName>
 
   <project>
-    <PathAndName>.\Virt1\Project\prc_virt1.uvprojx</PathAndName>
-    <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
-  </project>
-
-  <project>
-    <PathAndName>.\Proc2\Project\prc_proc2.uvprojx</PathAndName>
+    <PathAndName>Virt1/Project/prc_virt1.uvprojx</PathAndName>
     <NodeIsExpanded>1</NodeIsExpanded>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
 
   <project>
-    <PathAndName>.\Proc1\Project\prc_proc1.uvprojx</PathAndName>
+    <PathAndName>Proc2/Project/prc_proc2.uvprojx</PathAndName>
     <NodeIsExpanded>1</NodeIsExpanded>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
 
   <project>
-    <PathAndName>.\Monitor\Project\monitor.uvprojx</PathAndName>
+    <PathAndName>Proc1/Project/prc_proc1.uvprojx</PathAndName>
     <NodeIsExpanded>1</NodeIsExpanded>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
 
   <project>
-    <PathAndName>.\Kernel\Project\kernel.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
+    <PathAndName>Monitor/Project/monitor.uvprojx</PathAndName>
     <NodeIsExpanded>1</NodeIsExpanded>
     <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
   </project>
+
+  <project>
+    <PathAndName>Kernel/Project/kernel.uvprojx</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
+    <NodeIsCheckedInBatchBuild>1</NodeIsCheckedInBatchBuild>
+  </project>
+
 
 </ProjectWorkspace>
+

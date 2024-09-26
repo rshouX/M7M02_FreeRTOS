@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rme_platform_stm32l071cb.ld
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:43:15
+Date        : 26/09/2024 10:23:19
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with STM32L071CB, and the GNU toolchain.
@@ -11,9 +11,9 @@ Description : The GCC linker script. This file is intended
 MEMORY
 {
     /* Statically allocated kernel data segment */
-    KDATA (rw) : ORIGIN = 0x20000000 , LENGTH = 0x300
+    KDATA (rw) : ORIGIN = 0x20000000 , LENGTH = 0x280
     /* Dynamically allocated kernel data segment */
-    KMEM (rw) : ORIGIN = 0x20000300 , LENGTH = 0x10C0
+    KMEM (rw) : ORIGIN = 0x20000280 , LENGTH = 0x1140
     /* Kernel stack segment */
     KSTK (rw) : ORIGIN = 0x200013C0 , LENGTH = 0x400
 
@@ -79,6 +79,7 @@ SECTIONS
     *(.text .text.*)
     *(.srodata .srodata.* .sconstdata .sconstdata.*)
     *(.rodata .rodata.* .constdata .constdata.*)
+    . = ALIGN(4);
     __RME_Code_End = .;
 } > KCODE
 

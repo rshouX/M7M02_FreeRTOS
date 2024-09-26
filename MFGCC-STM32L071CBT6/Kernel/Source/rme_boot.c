@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rme_boot.c
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:43:15
+Date        : 26/09/2024 10:23:19
 License     : Unlicense; see COPYING for details.
 Description : The boot-time initialization file.
 ******************************************************************************/
@@ -59,7 +59,7 @@ rme_ptr_t RME_Boot_Vct_Init(struct RME_Cap_Cpt* Cpt,
 
     /* The address here shall match what is in the generator */
     RME_ASSERT(Cap_Front==7U);
-    RME_ASSERT(Kom_Front==0x20000620U);
+    RME_ASSERT(Kom_Front==0x200005B0U);
 
     Cur_Addr=Kom_Front;
     /* Create all the vector capability tables first */

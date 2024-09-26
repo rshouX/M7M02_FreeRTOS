@@ -17,9 +17,9 @@ Description: The configuration file for STM32L071CB.
 #define RME_PGT_RAW_ENABLE                              (0U)
 /* Modifiable ****************************************************************/
 /* Kernel object virtual memory base */
-#define RME_KOM_VA_BASE                                 (0x20000300U)
+#define RME_KOM_VA_BASE                                 (0x20000280U)
 /* Kernel object virtual memory size */
-#define RME_KOM_VA_SIZE                                 (0x10C0U)
+#define RME_KOM_VA_SIZE                                 (0x1140U)
 /* Hypervisor context virtual memory base - set to 0 if no VM */
 #define RME_HYP_VA_BASE                                 (0x0U)
 /* Hypervisor context virtual memory size - set to 0 if no VM */
@@ -44,10 +44,10 @@ Description: The configuration file for STM32L071CB.
 #define RME_RVM_INIT_CPT_SIZE                           (18U)
 /* Initial kernel object frontier limit */
 #define RME_RVM_CPT_BOOT_FRONT                          (8U)
-#define RME_RVM_KOM_BOOT_FRONT                          (0x340U)
+#define RME_RVM_KOM_BOOT_FRONT                          (0x350U)
 /* Post-boot kernel object frontier limit */
 #define RME_RVM_CPT_DONE_FRONT                          (18U)
-#define RME_RVM_KOM_DONE_FRONT                          (0x1090U)
+#define RME_RVM_KOM_DONE_FRONT                          (0x1110U)
 
 /* Init process's first thread's entry point address */
 #define RME_A6M_INIT_ENTRY                              (0x800E001U)

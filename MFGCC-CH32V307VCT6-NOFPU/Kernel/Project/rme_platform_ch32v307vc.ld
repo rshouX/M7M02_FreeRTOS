@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rme_platform_ch32v307vc.ld
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:42:52
+Date        : 26/09/2024 10:23:15
 Licence     : Unlicense; see COPYING for details.
 Description : The GCC linker script. This file is intended
               to be used with CH32V307VC, and the GNU toolchain.
@@ -80,6 +80,7 @@ SECTIONS
     *(.text .text.*)
     *(.srodata .srodata.* .sconstdata .sconstdata.*)
     *(.rodata .rodata.* .constdata .constdata.*)
+    . = ALIGN(4);
     __RME_Code_End = .;
 } > KCODE
 

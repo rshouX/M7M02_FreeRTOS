@@ -15,9 +15,9 @@ Description: The configuration file for STM32L071CB. The values listed here shou
 /* Are we using raw memory mappings? */
 #define RVM_PGT_RAW_ENABLE                              (0U)
 /* Kernel object virtual memory base */
-#define RVM_KOM_VA_BASE                                 (0x20000300U)
+#define RVM_KOM_VA_BASE                                 (0x20000280U)
 /* Kernel object virtual memory size */
-#define RVM_KOM_VA_SIZE                                 (0x10C0U)
+#define RVM_KOM_VA_SIZE                                 (0x1140U)
 /* Kernel memory allocation granularity order */
 #define RVM_KOM_SLOT_ORDER                              (4U)
 /* The maximum number of preemption priorities */
@@ -40,10 +40,10 @@ Description: The configuration file for STM32L071CB. The values listed here shou
 #define RVM_INIT_CPT_SIZE                               (52U)
 /* Initial kernel object frontier limit */
 #define RVM_CPT_BOOT_FRONT                              (8U)
-#define RVM_KOM_BOOT_FRONT                              (0x340U)
+#define RVM_KOM_BOOT_FRONT                              (0x350U)
 /* Post-boot kernel object frontier limit */
 #define RVM_CPT_DONE_FRONT                              (18U)
-#define RVM_KOM_DONE_FRONT                              (0x1090U)
+#define RVM_KOM_DONE_FRONT                              (0x1110U)
 
 /* Init process's first thread's entry point address */
 #define RVM_A6M_INIT_ENTRY                              (0x800E001U)

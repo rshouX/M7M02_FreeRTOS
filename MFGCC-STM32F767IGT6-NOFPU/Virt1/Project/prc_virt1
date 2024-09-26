@@ -9,7 +9,7 @@
 
 # Config ######################################################################
 TARGET=virt1
-CPU=-mcpu=cortex-m7 -mthumb -mfpu=fpv5-d16
+CPU=-mcpu=cortex-m7 -mthumb
 
 CFLAGS=-O3 -specs=nano.specs -fsigned-char -fno-common -fno-strict-aliasing -fdata-sections -ffunction-sections -ffreestanding
 AFLAGS=-fdata-sections -ffunction-sections

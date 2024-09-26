@@ -1,7 +1,7 @@
 /******************************************************************************
 Filename    : rvm_hook.c
 Author      : The RVM project generator.
-Date        : 05/09/2024 21:43:11
+Date        : 26/09/2024 10:23:18
 License     : Unlicense; see COPYING for details.
 Description : The user initialization hook file.
 ******************************************************************************/
