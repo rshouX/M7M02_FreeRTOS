@@ -565,16 +565,12 @@ int main()
                 1U,
                 &Thd_2);
 
-    RVM_DBG_S("Thread 2 init.\r\n");
-
     xTaskCreate(Func_1,
                 "Func1",
                 128,
                 (void*)0x1234U,
                 2U,
                 &Thd_1);
-                
-    RVM_DBG_S("Thread 1 init.\r\n");
 
     vTaskStartScheduler();
 }

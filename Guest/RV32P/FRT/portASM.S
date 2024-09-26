@@ -243,7 +243,7 @@ xPortStartFirstTask:
     LW                  x30,30*4(sp)        /* t5 */
     LW                  x31,31*4(sp)        /* t6 */
 
-    ADDI                sp,sp,31*4
+    ADDI                sp,sp,32*4
 
     RET
     .endfunc

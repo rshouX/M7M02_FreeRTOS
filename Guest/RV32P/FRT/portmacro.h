@@ -84,7 +84,7 @@ do \
 } \
 while(0)
 
-#define portEND_SWITCHING_ISR( xSwitchRequired ) do { if( xSwitchRequired ) portYIELD(); } while( 0 )
+#define portEND_SWITCHING_ISR( xSwitchRequired ) do { if( xSwitchRequired ) RVM_Virt_Yield(); } while( 0 )
 #define portYIELD_FROM_ISR( x ) portEND_SWITCHING_ISR( x )
 /*-----------------------------------------------------------*/
 

@@ -51,7 +51,7 @@ RVM_EXTERN void _FreeRTOS_A7M_RVM_Yield(void);
 do \
 { \
     if(xSwitchRequired!=pdFALSE ) \
-        portYIELD(); \
+        RVM_Virt_Yield(); \
 } \
 while(0)
 #define portYIELD_FROM_ISR(x)                   portEND_SWITCHING_ISR(x)

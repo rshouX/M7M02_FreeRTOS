@@ -283,47 +283,6 @@ void xPortPendSVHandler( void )
 
     /* BX       LR */
     return;
-//    __asm volatile
-//    (
-//    "   mrs r0, psp                         \n"
-//    "                                       \n"
-//    "   ldr r3, pxCurrentTCBConst           \n" /* Get the location of the current TCB. */
-//    "   ldr r2, [r3]                        \n"
-//    "                                       \n"
-//    "   subs r0, r0, #32                    \n" /* Make space for the remaining low registers. */
-//    "   str r0, [r2]                        \n" /* Save the new top of stack. */
-//    "   stmia r0!, {r4-r7}                  \n" /* Store the low registers that are not saved automatically. */
-//    "   mov r4, r8                          \n" /* Store the high registers. */
-//    "   mov r5, r9                          \n"
-//    "   mov r6, r10                         \n"
-//    "   mov r7, r11                         \n"
-//    "   stmia r0!, {r4-r7}                  \n"
-//    "                                       \n"
-//    "   push {r3, r14}                      \n"
-//    "   cpsid i                             \n"
-//    "   bl vTaskSwitchContext               \n"
-//    "   cpsie i                             \n"
-//    "   pop {r2, r3}                        \n" /* lr goes in r3. r2 now holds tcb pointer. */
-//    "                                       \n"
-//    "   ldr r1, [r2]                        \n"
-//    "   ldr r0, [r1]                        \n" /* The first item in pxCurrentTCB is the task top of stack. */
-//    "   adds r0, r0, #16                    \n" /* Move to the high registers. */
-//    "   ldmia r0!, {r4-r7}                  \n" /* Pop the high registers. */
-//    "   mov r8, r4                          \n"
-//    "   mov r9, r5                          \n"
-//    "   mov r10, r6                         \n"
-//    "   mov r11, r7                         \n"
-//    "                                       \n"
-//    "   msr psp, r0                         \n" /* Remember the new top of stack for the task. */
-//    "                                       \n"
-//    "   subs r0, r0, #32                    \n" /* Go back for the low registers that are not automatically restored. */
-//    "   ldmia r0!, {r4-r7}                  \n" /* Pop low registers.  */
-//    "                                       \n"
-//    "   bx r3                               \n"
-//    "                                       \n"
-//    "   .align 4                            \n"
-//    "pxCurrentTCBConst: .word pxCurrentTCB    "
-//    );
 }
 /*-----------------------------------------------------------*/
 

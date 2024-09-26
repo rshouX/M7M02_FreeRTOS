@@ -151,13 +151,13 @@ task stack, not the ISR stack). */
 	}
 
 #else
-
+void Ctx_Handler( void );
 /* just for wch's systick,don't have mtime */
 void vPortSetupTimerInterrupt( void )
 {
     /* Hook Systick & PendSV */
     RVM_Virt_Tim_Reg(FRT_Tim_Handler);
-    RVM_Virt_Ctx_Reg(FRT_Ctx_Handler);
+    RVM_Virt_Ctx_Reg(Ctx_Handler);
 }
 
 #endif /* ( configMTIME_BASE_ADDRESS != 0 ) && ( configMTIME_BASE_ADDRESS != 0 ) */
@@ -196,6 +196,191 @@ void FRT_Tim_Handler( void )
 		/* Trigger yield. */
     }
     portENABLE_INTERRUPTS();
+}
+
+extern PRIVILEGED_DATA struct tskTaskControlBlock * volatile pxCurrentTCB;
+void Ctx_Handler( void )
+{
+	uint32_t* SP;
+    uint32_t MSTATUS;
+    
+    /* ADDI     sp,sp,-31*4         Save registers
+     * SW       x31,30*4(sp)
+     * SW       x30,29*4(sp)
+     * SW       x29,28*4(sp)
+     * SW       x28,27*4(sp)
+     * SW       x27,26*4(sp)
+     * SW       x26,25*4(sp)
+     * SW       x25,24*4(sp)
+     * SW       x24,23*4(sp)
+     * SW       x23,22*4(sp)
+     * SW       x22,21*4(sp)
+     * SW       x21,20*4(sp)
+     * SW       x20,19*4(sp)
+     * SW       x19,18*4(sp)
+     * SW       x18,17*4(sp)
+     * SW       x17,16*4(sp)
+     * SW       x16,15*4(sp)
+     * SW       x15,14*4(sp)
+     * SW       x14,13*4(sp)
+     * SW       x13,12*4(sp)
+     * SW       x12,11*4(sp)
+     * SW       x11,10*4(sp)
+     * SW       x10,9*4(sp)
+     * SW       x9,8*4(sp)
+     * SW       x8,7*4(sp)
+     * SW       x7,6*4(sp)
+     * SW       x6,5*4(sp)
+     * SW       x5,4*4(sp)
+     * SW       x4,3*4(sp)
+     * SW       x3,2*4(sp)
+     * SW       x1,1*4(sp)
+     * CSRR     a0,mepc
+     * SW       a0,1*4(sp)
+     * CSRR     a0,mstatus */
+    SP=((uint32_t*)(RVM_REG->Reg.X2_SP))-31U;
+    SP[30U]=RVM_REG->Reg.X31_T6;
+    SP[29U]=RVM_REG->Reg.X30_T5;
+    SP[28U]=RVM_REG->Reg.X29_T4;
+    SP[27U]=RVM_REG->Reg.X28_T3;
+    SP[26U]=RVM_REG->Reg.X27_S11;
+    SP[25U]=RVM_REG->Reg.X26_S10;
+    SP[24U]=RVM_REG->Reg.X25_S9;
+    SP[23U]=RVM_REG->Reg.X24_S8;
+    SP[22U]=RVM_REG->Reg.X23_S7;
+    SP[21U]=RVM_REG->Reg.X22_S6;
+    SP[20U]=RVM_REG->Reg.X21_S5;
+    SP[19U]=RVM_REG->Reg.X20_S4;
+    SP[18U]=RVM_REG->Reg.X19_S3;
+    SP[17U]=RVM_REG->Reg.X18_S2;
+    SP[16U]=RVM_REG->Reg.X17_A7;
+    SP[15U]=RVM_REG->Reg.X16_A6;
+    SP[14U]=RVM_REG->Reg.X15_A5;
+    SP[13U]=RVM_REG->Reg.X14_A4;
+    SP[12U]=RVM_REG->Reg.X13_A3;
+    SP[11U]=RVM_REG->Reg.X12_A2;
+    SP[10U]=RVM_REG->Reg.X11_A1;
+    SP[9U]=RVM_REG->Reg.X10_A0;
+    SP[8U]=RVM_REG->Reg.X9_S1;
+    SP[7U]=RVM_REG->Reg.X8_S0_FP;
+    SP[6U]=RVM_REG->Reg.X7_T2;
+    SP[5U]=RVM_REG->Reg.X6_T1;
+    SP[4U]=RVM_REG->Reg.X5_T0;
+    SP[3U]=RVM_REG->Reg.X4_TP;
+    SP[2U]=RVM_REG->Reg.X3_GP;
+    SP[1U]=RVM_REG->Reg.X1_RA;
+    SP[0U]=RVM_REG->Reg.PC;
+    MSTATUS=RVM_REG->Reg.MSTATUS;   /* Read mstatus to decide FPU status, but don't save yet */
+
+    /* ADDI     sp,sp,-4            Save mstatus
+     * SW       a0,0*4(sp) */
+    SP--;
+    SP[0U]=MSTATUS;
+
+    /* Store all the user-accessible hypercall structure to stack */
+    SP-=5U;
+    SP[4U]=RVM_STATE->Usr.Param[3];
+    SP[3U]=RVM_STATE->Usr.Param[2];
+    SP[2U]=RVM_STATE->Usr.Param[1];
+    SP[1U]=RVM_STATE->Usr.Param[0];
+    SP[0U]=RVM_STATE->Usr.Number;
+
+    /* STR      R0,[R2] */
+    *((uint32_t*)pxCurrentTCB)=(uint32_t)SP;
+    
+    vTaskSwitchContext();
+    
+    /* LDR      R1,[R3] */
+    /* LDR      R0,[R1] */
+    SP=(uint32_t*)(*((uint32_t*)pxCurrentTCB));
+
+    /* Load the user-accessible hypercall structure to stack */
+    RVM_STATE->Usr.Number=SP[0U];
+    RVM_STATE->Usr.Param[0]=SP[1U];
+    RVM_STATE->Usr.Param[1]=SP[2U];
+    RVM_STATE->Usr.Param[2]=SP[3U];
+    RVM_STATE->Usr.Param[3]=SP[4U];
+    SP+=5U;
+
+    /* LW       a0,0*4(sp)          Read mstatus to decide FPU status, but don't load yet
+     * ADDI     sp,sp,4 */
+    MSTATUS=SP[0U];
+    SP++;
+
+    /* LI       a1,0x1880           Load mstatus - force M mode with enabled interrupt
+     * OR       a0,a0,a1
+     * CSRW     mstatus,a0
+     * The RVM port is actually forcing U mode; we keep the original for reference */
+    RVM_REG->Reg.MSTATUS=MSTATUS;
+
+    /* LW       a0,0*4(sp)          Load pc
+     * CSRW     mepc,a0
+     * LW       x1,1*4(sp)          Load registers
+     * LW       x3,2*4(sp)
+     * LW       x4,3*4(sp)
+     * LW       x5,4*4(sp)
+     * LW       x6,5*4(sp)
+     * LW       x7,6*4(sp)
+     * LW       x8,7*4(sp)
+     * LW       x9,8*4(sp)
+     * LW       x10,9*4(sp)
+     * LW       x11,10*4(sp)
+     * LW       x12,11*4(sp)
+     * LW       x13,12*4(sp)
+     * LW       x14,13*4(sp)
+     * LW       x15,14*4(sp)
+     * LW       x16,15*4(sp)
+     * LW       x17,16*4(sp)
+     * LW       x18,17*4(sp)
+     * LW       x19,18*4(sp)
+     * LW       x20,19*4(sp)
+     * LW       x21,20*4(sp)
+     * LW       x22,21*4(sp)
+     * LW       x23,22*4(sp)
+     * LW       x24,23*4(sp)
+     * LW       x25,24*4(sp)
+     * LW       x26,25*4(sp)
+     * LW       x27,26*4(sp)
+     * LW       x28,27*4(sp)
+     * LW       x29,28*4(sp)
+     * LW       x30,29*4(sp)
+     * LW       x31,30*4(sp)
+     * ADDI     sp,sp,31*4 */
+    RVM_REG->Reg.PC=SP[0U];
+    RVM_REG->Reg.X1_RA=SP[1U];
+    RVM_REG->Reg.X3_GP=SP[2U];
+    RVM_REG->Reg.X4_TP=SP[3U];
+    RVM_REG->Reg.X5_T0=SP[4U];
+    RVM_REG->Reg.X6_T1=SP[5U];
+    RVM_REG->Reg.X7_T2=SP[6U];
+    RVM_REG->Reg.X8_S0_FP=SP[7U];
+    RVM_REG->Reg.X9_S1=SP[8U];
+    RVM_REG->Reg.X10_A0=SP[9U];
+    RVM_REG->Reg.X11_A1=SP[10U];
+    RVM_REG->Reg.X12_A2=SP[11U];
+    RVM_REG->Reg.X13_A3=SP[12U];
+    RVM_REG->Reg.X14_A4=SP[13U];
+    RVM_REG->Reg.X15_A5=SP[14U];
+    RVM_REG->Reg.X16_A6=SP[15U];
+    RVM_REG->Reg.X17_A7=SP[16U];
+    RVM_REG->Reg.X18_S2=SP[17U];
+    RVM_REG->Reg.X19_S3=SP[18U];
+    RVM_REG->Reg.X20_S4=SP[19U];
+    RVM_REG->Reg.X21_S5=SP[20U];
+    RVM_REG->Reg.X22_S6=SP[21U];
+    RVM_REG->Reg.X23_S7=SP[22U];
+    RVM_REG->Reg.X24_S8=SP[23U];
+    RVM_REG->Reg.X25_S9=SP[24U];
+    RVM_REG->Reg.X26_S10=SP[25U];
+    RVM_REG->Reg.X27_S11=SP[26U];
+    RVM_REG->Reg.X28_T3=SP[27U];
+    RVM_REG->Reg.X29_T4=SP[28U];
+    RVM_REG->Reg.X30_T5=SP[29U];
+    RVM_REG->Reg.X31_T6=SP[30U];
+    RVM_REG->Reg.X2_SP=(uint32_t)(SP+31U);
+
+    /* MRET */
+    return;
 }
 
 /*-----------------------------------------------------------*/
